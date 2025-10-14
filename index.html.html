@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DJ R</title>
+<style>
+  /* Reset básico */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #111;
+    color: #eee;
+    overflow: hidden;
+  }
+
+  /* Contenedor principal */
+  #layer1, #layer2 {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw; height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    transition: opacity 0.7s ease;
+  }
+  
+  /* Capa inicial con la R DJ */
+  #layer1 {
+    flex-direction: column;
+    cursor: pointer;
+    font-size: 10rem;
+    font-weight: 900;
+    letter-spacing: 1rem;
+    user-select: none;
+  }
+
+  #layer1.r-clicked {
+    animation: fadeOutScale 0.7s forwards;
+  }
+
+  @keyframes fadeOutScale {
+    0% {opacity: 1; transform: translate(-50%, -50%) scale(1);}
+    100% {opacity: 0; transform: translate(-50%, -50%) scale(0.3);}
+  }
+
+  /* Capa con opciones */
+  #layer2 {
+    flex-direction: column;
+    font-size: 2rem;
+    gap: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #layer2.visible {
+    animation: fadeIn 1s forwards;
+    pointer-events: auto;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Estilo lista de opciones */
+  ul {
+    list-style: none;
+    text-align: center;
+  }
+
+  ul li {
+    margin: 1rem 0;
+    cursor: pointer;
+    padding: 0.4rem 1rem;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    transition: background 0.3s, color 0.3s;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ul li:hover {
+    background: #eee;
+    color: #111;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Capa 1: R DJ -->
+<div id="layer1" title="Haz click para comenzar">
+  R DJ
+</div>
+
+<!-- Capa 2: Opciones -->
+<div id="layer2" aria-hidden="true">
+  <ul>
+    <li>Música</li>
+    <li>Eventos</li>
+    <li>Contacto</li>
+    <li>Galería</li>
+  </ul>
+</div>
+
+<script>
+  const layer1 = document.getElementById('layer1');
+  const layer2 = document.getElementById('layer2');
+
+  layer1.addEventListener('click', () => {
+    // Añadimos clase para animar desaparición
+    layer1.classList.add('r-clicked');
+
+    // Al terminar animación, ocultamos layer1 y mostramos layer2
+    layer1.addEventListener('animationend', () => {
+      layer1.style.display = 'none';
+      layer2.classList.add('visible');
+      layer2.setAttribute('aria-hidden', 'false');
+    }, {once: true});
+  });
+</script>
+
+</body>
+</html>
