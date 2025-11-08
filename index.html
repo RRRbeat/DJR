@@ -1,29 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DJ R</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R de Lucio DJ</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="background-lights"></div>
 
-<!-- Capa 1: R DJ -->
-<div id="layer1" title="Haz click para comenzar">
-  R DJ
-</div>
+  <!-- PORTADA -->
+  <section id="layer1" class="portada visible">
+    <h1 class="titulo-portada neon-text">R de Lucio DJ</h1>
+  </section>
 
-<!-- Capa 2: Opciones -->
-<div id="layer2" aria-hidden="true">
-  <ul>
-    <li>Música</li>
-    <li>Eventos</li>
-    <li>Contacto</li>
-    <li>Galería</li>
-  </ul>
-</div>
+  <!-- MENÚ -->
+  <section id="layer2" class="menu hidden">
+    <div class="top-controls">
+      <button id="sound-toggle">🔊</button>
+      <select id="language-select">
+        <option value="es">🇪🇸</option>
+        <option value="pt">🇧🇷</option>
+        <option value="en">🇺🇸</option>
+      </select>
+    </div>
+    <ul>
+      <li><a href="#" data-target="contacto" data-key="contact">Contacto</a></li>
+      <li><a href="#" data-target="eventos" data-key="events">Eventos</a></li>
+      <li><a href="#" data-target="galeria" data-key="gallery">Galería</a></li>
+      <li><a href="#" data-target="sobre" data-key="about">Sobre mí</a></li>
+    </ul>
+    <p id="volver-inicio" class="volver neon-sub">R de Lucio</p>
+  </section>
 
-<script src="script.js"></script>
+  <!-- PÁGINAS -->
+  <section id="contacto" class="page hidden">
+    <h2 class="neon-text">Contacto</h2>
+    <p>Enviame un mensaje directo:</p>
+    <form id="contact-form">
+      <input type="text" placeholder="Tu nombre" required>
+      <input type="email" placeholder="Tu correo" required>
+      <textarea placeholder="Tu mensaje..." required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <a href="#" class="back-btn" data-target="menu">Volver</a>
+  </section>
 
+  <section id="eventos" class="page hidden">
+    <h2 class="neon-text">Eventos</h2>
+    <p>Actualmente produciendo mixtapes y podcast para radio Córdoba, Argentina.</p>
+    <a href="#" class="back-btn" data-target="menu">Volver</a>
+  </section>
+
+  <section id="galeria" class="page hidden">
+    <h2 class="neon-text">Galería</h2>
+    <div class="galeria">
+      <img src="https://via.placeholder.com/200x200?text=1">
+      <img src="https://via.placeholder.com/200x200?text=2">
+      <img src="https://via.placeholder.com/200x200?text=3">
+    </div>
+    <a href="#" class="back-btn" data-target="menu">Volver</a>
+  </section>
+
+  <section id="sobre" class="page hidden">
+    <h2 class="neon-text">Sobre mí</h2>
+    <p>Productor musical, beatmaker y DJ independiente enfocado en mixtapes y sonido urbano.</p>
+    <a href="#" class="back-btn" data-target="menu">Volver</a>
+  </section>
+
+  <!-- SONIDOS -->
+  <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+  <audio id="transitionSound" src="transition.mp3" preload="auto"></audio>
+
+  <script src="script.js"></script>
 </body>
 </html>
